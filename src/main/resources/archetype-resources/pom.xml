@@ -88,6 +88,31 @@
           </execution>
         </executions>
       </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>${version.plugin.maven-antrun-plugin}</version>
+        <executions>
+          <execution>
+            <id>read-password</id>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+              <target>
+                <input message="Keystore password: "
+                       addproperty="keystore.password" >
+		  <handler type="secure"/>
+		</input>
+              </target>
+              <exportAntProperties>true</exportAntProperties>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
@@ -104,16 +129,18 @@
               <arguments>
                 <argument>-classpath</argument>
                 <classpath/>
-                <argument>-Dorg.lockss.defaultLogLevel=warn</argument>
+                <argument>-Dorg.lockss.defaultLogLevel=warning</argument>
                 <argument>org.lockss.util.PluginPackager</argument>
                 <argument>-pd</argument>
                 <argument>${basedir}/target/classes</argument>
                 <argument>-od</argument>
                 <argument>${basedir}/target/pluginjars</argument>
                 <argument>-keystore</argument>
-                <argument>${basedir}/anon.keystore</argument>
+                <argument>${keystore.file}</argument>
                 <argument>-alias</argument>
-                <argument>anon</argument>
+                <argument>${keystore.alias}</argument>
+                <argument>-storepass</argument>
+                <argument>${keystore.password}</argument>
               </arguments>
             </configuration>
           </execution>
