@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-  ~ Copyright (c) 2020 Board of Trustees of Leland Stanford Jr. University,
-  ~ all rights reserved.
-  ~
-  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
-  ~ of this software and associated documentation files (the "Software"), to deal
-  ~ in the Software without restriction, including without limitation the rights
-  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  ~ copies of the Software, and to permit persons to whom the Software is
-  ~ furnished to do so, subject to the following conditions:
-  ~
-  ~ The above copyright notice and this permission notice shall be included in
-  ~ all copies or substantial portions of the Software.
-  ~
-  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-  ~ STANFORD UNIVERSITY BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-  ~ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
-  ~ IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  ~
-  ~ Except as contained in this notice, the name of Stanford University shall not
-  ~ be used in advertising or otherwise to promote the sale, use or other dealings
-  ~ in this Software without prior written authorization from Stanford University.
-  -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+Copyright (c) 2000-2018, Board of Trustees of Leland Stanford Jr. University
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+this list of conditions and the following disclaimer in the documentation and/or
+other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -53,8 +58,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <keystore.file>${basedir}/anon.keystore</keystore.file>
-    <keystore.alias>anon</keystore.alias>
   </properties>
 
   <dependencies>
@@ -104,6 +107,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -128,6 +132,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <version>${version.plugin.maven-antrun-plugin}</version>
+        <dependencies>
+          <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>${version.dependency.ant-contrib}</version>
+          </dependency>
+        </dependencies>
         <executions>
           <execution>
             <id>read-password</id>
@@ -137,10 +148,23 @@
             <phase>prepare-package</phase>
             <configuration>
               <target>
-                <input message="Keystore password: "
-                  addproperty="keystore.password">
-                  <handler type="secure"/>
-                </input>
+                <taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+		<if>
+		  <and>
+		    <isset property="keystore.file" />
+		    <isset property="keystore.alias" />
+		  </and>
+		  <then>
+                    <input message="Keystore password: "
+			   addproperty="keystore.password">
+                      <handler type="secure"/>
+                    </input>
+		  </then>
+		  <else>
+		    <echo message="keystore.file and keystore.alias must be defined" />
+		    <fail message="keystore.file and keystore.alias must be defined" />
+		  </else>
+		</if>
               </target>
               <exportAntProperties>true</exportAntProperties>
             </configuration>
@@ -216,4 +240,20 @@
       </testResource>
     </testResources>
   </build>
+
+  <profiles>
+    <profile>
+      <id>testing</id>
+      <activation>
+	<property>
+          <name>testing</name>
+	</property>
+      </activation>
+      <properties>
+	<keystore.file>resource:org/lockss/test/develop.keystore</keystore.file>
+	<keystore.alias>develop</keystore.alias>
+	<keystore.password>devpass</keystore.password>
+      </properties>
+    </profile>
+  </profiles>
 </project>
