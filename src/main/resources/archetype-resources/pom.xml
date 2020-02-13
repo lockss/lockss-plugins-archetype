@@ -114,17 +114,30 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
         <groupId>org.lockss.laaws</groupId>
         <artifactId>lockss-tdbxml-maven-plugin</artifactId>
         <version>${version.lockss.lockss-tdbxml-maven-plugin}</version>
-        <configuration>
-          <srcDir>src/test/java</srcDir>
-          <dstDir>target/test-classes</dstDir>
-          <recurse>true</recurse>
-        </configuration>
         <executions>
           <execution>
+            <id>processTdb</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>tdbxml</goal>
+            </goals>
+            <configuration>
+              <srcDir>${basedir}/src/main/tdb</srcDir>
+              <dstDir>${project.build.directory}/tdbxml</dstDir>
+              <recurse>true</recurse>
+            </configuration>
+          </execution>
+          <execution>
+            <id>processTestTdb</id>
             <phase>process-test-resources</phase>
             <goals>
               <goal>tdbxml</goal>
             </goals>
+            <configuration>
+              <srcDir>${project.build.testSourceDirectory}</srcDir>
+              <dstDir>${project.build.testOutputDirectory}</dstDir>
+              <recurse>true</recurse>
+            </configuration>
           </execution>
         </executions>
       </plugin>
