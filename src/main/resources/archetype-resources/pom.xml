@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 
 Copyright (c) 2000-2020, Board of Trustees of Leland Stanford Jr. University
@@ -30,23 +30,25 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>org.lockss</groupId>
     <artifactId>lockss-plugins-parent-pom</artifactId>
     <version>1.1.0-SNAPSHOT</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
   <packaging>jar</packaging>
-
   <name>${artifactId}</name>
+
   <description>Build and pacakager for LOCKSS Plugins.</description>
+
+  <properties>
+    <keystore.file>${basedir}/anon.keystore</keystore.file>
+    <keystore.alias>anon</keystore.alias>
+  </properties>
 </project>
