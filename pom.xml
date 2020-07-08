@@ -11,6 +11,10 @@
 
   <name>Archetype - lockss-plugins-archetype</name>
 
+  <properties>
+    <archetype.test.skip>true</archetype.test.skip>
+  </properties>
+
   <build>
     <extensions>
       <extension>
