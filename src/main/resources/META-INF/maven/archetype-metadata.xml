@@ -7,17 +7,11 @@ xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descript
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 name="lockss-plugins-archetype">
 <fileSets>
-    <fileSet filtered="true" packaged="true">
-        <directory>src/main/java</directory>
-    </fileSet>
-    <fileSet>
-        <directory>src/test/java</directory>
-    </fileSet>
-    <fileSet>
-        <directory>src/main/tdb</directory>
-    </fileSet>
-    <fileSet>
-        <directory>src/test/tdb</directory>
-    </fileSet>
+<fileSet filtered="true" packaged="true">
+    <directory>src/main/java</directory>
+</fileSet>
+<fileSet>
+    <directory>src/test/java</directory>
+</fileSet>
 </fileSets>
 </archetype-descriptor>
