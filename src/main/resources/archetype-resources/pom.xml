@@ -48,5 +48,5 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <packaging>jar</packaging>
 
   <name>${artifactId}</name>
-  <description>Build and pacakager for LOCKSS Plugins.</description>
+  <description>Build and packager for LOCKSS Plugins.</description>
 </project>
