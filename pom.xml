@@ -7,13 +7,13 @@
   <parent>
     <groupId>org.lockss</groupId>
     <artifactId>lockss-parent-pom</artifactId>
-    <version>1.14.0-SNAPSHOT</version>
+    <version>1.14.0</version>
     <relativePath />
   </parent>
 
   <groupId>org.lockss</groupId>
   <artifactId>lockss-plugins-archetype</artifactId>
-  <version>1.1.0-SNAPSHOT</version>
+  <version>1.1.0</version>
   <packaging>maven-archetype</packaging>
 
   <name>Archetype - lockss-plugins-archetype</name>
