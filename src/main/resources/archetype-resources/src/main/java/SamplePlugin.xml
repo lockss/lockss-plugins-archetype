@@ -2,7 +2,7 @@
 <map>
   <entry>
     <string>plugin_identifier</string>
-    <string>$package.SamplePlugin</string>
+    <string>${package}.SamplePlugin</string>
   </entry>
   <entry>
     <string>plugin_name</string>
@@ -63,12 +63,12 @@
   <entry>
     <!-- PDF validator factory -->
     <string>application/pdf_content_validator_factory</string>
-    <string>$package.PdfContentValidator$Factory</string>
+    <string>${package}.PdfContentValidator$Factory</string>
   </entry>
   <entry>
     <!-- Validator factory for all other MIME types -->
     <string>*/*_content_validator_factory</string>
-    <string>$package.AllContentValidator$Factory</string>
+    <string>${package}.AllContentValidator$Factory</string>
   </entry>
   <entry>
     <string>plugin_cache_result_list</string>
@@ -76,11 +76,11 @@
       <string>500=org.lockss.util.urlconn.CacheException$RetryableNetworkException_5_60S</string>
       <!-- Retry header error 3 times at 10 second intervals  -->
       <string>
-        $package.PdfContentValidator$InvalidReponseHeaderException=org.lockss.util.urlconn.CacheException$RetryableNetworkException_3_10S
+        ${package}.PdfContentValidator$InvalidReponseHeaderException=org.lockss.util.urlconn.CacheException$RetryableNetworkException_3_10S
       </string>
       <!-- Retry truncated file 5 times at 30 second intervals  -->
       <string>
-        $package.PdfContentValidator$TruncatedPdfException=org.lockss.util.urlconn.CacheException$RetryableNetworkException_5_30S
+        ${package}.PdfContentValidator$TruncatedPdfException=org.lockss.util.urlconn.CacheException$RetryableNetworkException_5_30S
       </string>
     </list>
   </entry>
