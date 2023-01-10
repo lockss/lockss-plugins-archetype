@@ -37,7 +37,7 @@ POSSIBILITY OF SUCH DAMAGE.
   <parent>
     <groupId>org.lockss</groupId>
     <artifactId>lockss-parent-pom</artifactId>
-    <version>1.15.0-SNAPSHOT</version>
+    <version>1.16.0-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -47,7 +47,7 @@ POSSIBILITY OF SUCH DAMAGE.
   -->
   <groupId>org.lockss</groupId>
   <artifactId>lockss-plugins-archetype</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <version>1.3.0-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>Archetype - lockss-plugins-archetype</name>
