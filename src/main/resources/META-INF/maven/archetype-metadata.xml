@@ -9,13 +9,13 @@
     <fileSet filtered="true" packaged="true">
       <directory>src/main/java</directory>
     </fileSet>
-    <fileSet>
+    <fileSet filtered="true" packaged="true">
       <directory>src/test/java</directory>
     </fileSet>
-    <fileSet>
+    <fileSet filtered="true" packaged="true">
       <directory>src/main/tdb</directory>
     </fileSet>
-    <fileSet>
+    <fileSet filtered="true" packaged="true">
       <directory>src/test/tdb</directory>
     </fileSet>
   </fileSets>
