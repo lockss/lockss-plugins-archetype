@@ -20,8 +20,9 @@ Place your plugin files (.xml, .java, etc.) in
 src/main/java/<your-package>/<plugin-name>/, and your tests in
 src/test/java/<your-package>/<plugin-name>/.
 
-Build the plugin(s) with mvn package.  This will generate
-<plugin-name>.jar files in target/pluginjars.
+Build the plugin(s) with mvn verify.  This will generate
+<plugin-name>.jar files in target/pluginjars as well as run some
+validation checks.
 
 
 ### Available properties
