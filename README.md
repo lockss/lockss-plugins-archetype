@@ -10,6 +10,10 @@ To use the latest released version of this archetype execute the following maven
      -DarchetypeArtifactId=lockss-plugins-archetype \
      -DarchetypeVersion=1.4.0-SNAPSHOT
 
+Note: Use `-Ptesting` to package the plugin without supplying keyfile/password. This is 
+intended for development and testing of plugins e.g., in runcluster. See the README.md 
+in that project for additional details.
+
 Follow the prompts:
 - Define value for property 'groupId': <your.package>  (e.g., edu.<institution>)
 - Define value for property 'artifactId': <your-artifact>  (e.g., plugin name)
@@ -23,7 +27,6 @@ src/test/java/<your-package>/<plugin-name>/.
 Build the plugin(s) with mvn verify.  This will generate
 <plugin-name>.jar files in target/pluginjars as well as run some
 validation checks.
-
 
 ### Available properties
 
